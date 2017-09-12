@@ -2,13 +2,13 @@
     function config($stateProvider, $locationProvider {
         $locationProvider
             .html5Mode({
-                enabled:true,
+                enabled: true,
                 requireBase: false
             });
 
         $stateProvider
         .state('landing', {
-            url:'/',
+            url: '/',
             templateUrl:'/templates/landing.html'
 
         })
@@ -18,7 +18,7 @@
 
           })
         .state('collection', {
-            url:'/collection',
+            url: '/collection',
             templateUrl: '/templates/collection.html'
 
         });
