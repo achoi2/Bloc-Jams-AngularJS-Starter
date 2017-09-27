@@ -29,7 +29,11 @@
                 };
 
                 scope.fillStyle = function() {
-                    return {width: precentString()};
+                    return {width: percentString()};
+                };
+
+                scope.thumbstyle = function() {
+                    return {left: percentString()};
                 };
 
                 scope.onClickSeekBar = function(event) {
