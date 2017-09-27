@@ -44,7 +44,7 @@
                 scope.trackThumb = function() {
                     $document.bing('mousemove.thumb', function(event) {
                         var percent = calculatePercent(seekBar, event);
-                        scope.$apply(function() {
+                        (function() {
                             scope.value = percent * scope.max;
                         });
                     });
