@@ -12,6 +12,7 @@
         var currentBuzzObject = null;
 
         SongPlayer.currentTime = null;
+        Songplayer.volume = null;
 
         var setSong = function(song) {
             if (currentBuzzObject) {
@@ -21,6 +22,12 @@
             currentBuzzObject = new buzz.sound(song.audioUrl, {
                 formats: ['mp3'],
                 preload: true
+            });
+
+            currentBuzzObject.bind('timeupdate', function () {
+                $rootScope.$apply(function() {
+                    SongPlayer.currentTime = currentBuzzObject.getTime();
+                });
             });
 
             SongPlayer.currentSong = song;
@@ -71,9 +78,9 @@
 
         SongPlayer.next = function() {
             var currentSongIndex = getSongIndex(SongPlayer.currentSong);
-            currentSongIndex++;
+            currentSongIndex++
 
-            if (currentSongIndex > 0) {
+            if (currentSongIndex >= currentAlbum.songs.length ) {
                 stopSong(song);
 
               } else {
@@ -87,6 +94,12 @@
                     currentBuzzObject.setTime(time);
                 }
             };
+        };
+
+        SongPlayer.setVolume = function(volume) {
+            if (currentBuzzObject) {
+                currentBuzzObject.setVolume(volume);
+            }
         };
 
         return SongPlayer;
